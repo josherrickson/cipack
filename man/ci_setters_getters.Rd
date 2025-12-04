@@ -63,6 +63,10 @@ ub(object) <- value
 \arguments{
 \item{object}{A `waldCI` object}
 
+\item{x}{A `waldCI` object}
+
+\item{...}{ignored}
+
 \item{value}{New value when setting}
 }
 \value{

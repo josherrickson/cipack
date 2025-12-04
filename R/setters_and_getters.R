@@ -18,7 +18,9 @@
 
 ##' Getters and Setters for Wald CI objects
 ##' @param object A `waldCI` object
+##' @param x A `waldCI` object
 ##' @param value New value when setting
+##' @param ... ignored
 ##' @return Getters return scalar; setters return the object
 ##' @rdname ci_setters_getters
 ##' @export

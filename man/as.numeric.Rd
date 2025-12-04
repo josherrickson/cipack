@@ -8,6 +8,8 @@ as.numeric(x, ...)
 }
 \arguments{
 \item{x}{waldCI object}
+
+\item{...}{ignored}
 }
 \value{
 Length 2 vector of the bounds of `x`.
