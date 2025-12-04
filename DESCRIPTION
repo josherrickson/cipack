@@ -19,6 +19,7 @@ Collate:
     'waldCI.R'
     'as.numeric.waldCI.R'
     'contains.R'
+    'data.R'
     'setters_and_getters.R'
     'transformCI.R'
 Suggests: 
