@@ -25,6 +25,8 @@ setValidity("waldCI", function(object) {
 ##' @param sterr standard error, optional
 ##' @return A `waldCI` object
 ##' @export
+##' @importFrom methods new
+##' @importFrom stats qnorm
 ##' @examples
 ##'  myci <- makeCI(.95, mean = 2, sterr = 1)
 makeCI <- function(level,
@@ -40,10 +42,10 @@ makeCI <- function(level,
     if (lb > ub) {
       stop("lb must be less than ub")
     }
-    z <- qnorm((1 + level) / 2)
+    z <- stats::qnorm((1 + level) / 2)
     mean <- (lb + ub) / 2
     sterr   <- (ub - lb) / (2 * z)
-    return(new("waldCI", level = level, mean = mean, sterr = sterr))
+    return(methods::new("waldCI", level = level, mean = mean, sterr = sterr))
   } else {
     stop("Input must be either lb/ub or mean/sterr")
   }
@@ -52,8 +54,9 @@ makeCI <- function(level,
 ##' Internal function to compute bounds from stored mean/sterr
 ##' @param ci Confidence level
 ##' @return A vector of length 2 for lower and upper bounds
+##' @importFrom stats qnorm
 .getBounds <- function(ci) {
-  z <- qnorm((1 + ci@level)/2)
+  z <- stats::qnorm((1 + ci@level)/2)
   lb <- ci@mean - z*ci@sterr
   ub <- ci@mean + z*ci@sterr
   return(c(lb, ub))
@@ -62,7 +65,6 @@ makeCI <- function(level,
 ##' Show method for waldCI object
 ##' @param object A waldCI object
 ##' @return `object`, invisibly
-##' @export
 setMethod("show", "waldCI", function(object) {
   bound <- .getBounds(object)
   cat(round(object@level*100))

@@ -2,9 +2,10 @@
 ##' @param object A `waldCI` object
 ##' @param slotname Which slot? Character.
 ##' @return A length-1 vector with the requested `slotname`.
+##' @importFrom methods slot
 .getSlot <- function(object, slotname) {
   if (slotname %in% c("level", "mean", "sterr")) {
-    return(slot(object, slotname))
+    return(methods::slot(object, slotname))
   }
   bounds <- .getBounds(object)
   if (slotname == "lb") {
